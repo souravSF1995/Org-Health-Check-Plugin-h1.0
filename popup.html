@@ -1,0 +1,785 @@
+<!doctype html>
+
+<html id = "htmlDoc" style="min-width:700px">
+<style>
+.header {
+   
+  background-color: #0176D3;
+  color: #FFFFFF;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+  border-radius:10px;
+  font-family:Helvetica;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  
+}
+
+.noAlertsFound  {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+.buttonDiv {
+    padding-top: 20px;
+    padding-bottom: 10px;
+	  text-align: center;
+  }
+
+.body{
+  margin:0;
+  background:#EAF5FE;
+  mix-blend-mode:normal;
+}
+
+.circleButton{
+  text-align:center;
+  background: linear-gradient(#63CCFB 100%,#22B0F6 94.1%,#00A2F4 91%);
+  height:65px;
+  width:65px;
+  color:#fefefe;
+  padding:5px;
+  font-size:14px;
+  display:inline-block;
+  text-decoration:none;
+  margin:20px 50%;
+  margin-right:30px;
+  border-radius:50%;
+  border: black;
+  font-family:Helvetica;
+  filter: drop-shadow(0px 15px 30px rgba(3, 103, 153, 0.2)) drop-shadow(0px 15px 20px rgba(3, 103, 153, 0.1));
+
+}
+.circleButton:hover{
+  background:#008bff;
+}
+.circleButton:active {
+  background-color: #308ABE;
+  filter: drop-shadow(0px 30px 50px rgba(3, 103, 153, 0.2)) drop-shadow(0px 15px 20px rgba(3, 103, 153, 0.1));
+  transform: translateY(4px);
+}
+.ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.commentButton {
+  border-radius: 4px;
+  background-color: #42bd72;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  padding: 5px;
+  width: 60px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.commentButton:hover {
+  background: #de1818f8;
+  box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
+              -4px -4px 6px 0 rgba(116, 125, 136, .2), 
+    inset -4px -4px 6px 0 rgba(255,255,255,.5),
+    inset 4px 4px 6px 0 rgba(116, 125, 136, .3);
+  color: #ffffff;
+}
+
+.toastNotification {
+  width:400px;
+  height:40px;
+  position:center;
+  margin-left:140px;
+  top:100px;
+  background-color: #33a960;
+  color: #F0F0F0;
+  font-family: Calibri;
+  font-size: 15px;
+  padding:10px;
+  text-align:center;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+  -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+  box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+.loader,
+.loader:before,
+.loader:after {
+  background: #f1f1f1;
+  -webkit-animation: load1 1s infinite ease-in-out;
+  animation: load1 1s infinite ease-in-out;
+  width: 1em;
+  height: 4em;
+}
+.loader {
+  color: #cd2626;
+  text-indent: -9999em;
+  margin-left: 350px;
+  margin-top: 70px;
+  position: relative;
+  font-size: 13px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  position: absolute;
+  top: 0;
+  content: '';
+}
+.loader:before {
+  left: -1.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 1.5em;
+}
+@-webkit-keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em;
+  }
+}
+@keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em;
+  }
+}
+
+.img_issue{
+  height: 50px; 
+  width: 50px;
+  margin-left: 40px;
+  border-radius: 10%;
+}
+
+.img_issue:hover{ 
+  transform: scale(1.08);
+ /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5); 
+  transition: all linear 0.15s;
+  bottom: 5px;
+  opacity: 0.6;
+}
+
+/* ----------- Card CSS ------------ */
+
+#subcard{
+  margin-top: 15px;
+}
+
+#subcard:hover{ 
+  transform: scale(1.05);
+ /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5); 
+  transition: all linear 0.25s;
+  bottom: 5px;
+}
+#subcard_EWS{
+  margin-top: 15px;
+}
+
+#subcard_EWS:hover{ 
+  transform: scale(1.05);
+ /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5); 
+  transition: all linear 0.25s;
+  bottom: 5px;
+}
+#subcard_OrgAnalyzer{
+  margin-top: 15px;
+}
+
+#subcard_OrgAnalyzer:hover{ 
+  transform: scale(1.05);
+ /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5); 
+  transition: all linear 0.25s;
+  bottom: 5px;
+}
+#subcard_OA{
+  margin-top: 15px;
+}
+
+#subcard_OA:hover{ 
+  transform: scale(1.05);
+ /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5); 
+  transition: all linear 0.25s;
+  bottom: 5px;
+}
+#subcard_PagerDuty{
+  margin-top: 15px;
+}
+
+#subcard_PagerDuty:hover{ 
+  transform: scale(1.05);
+ /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5); 
+  transition: all linear 0.25s;
+  bottom: 5px;
+}
+#subcard_ReFocus{
+  margin-top: 15px;
+}
+
+#subcard_ReFocus:hover{ 
+  transform: scale(1.05);
+ /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5); 
+  transition: all linear 0.25s;
+  bottom: 5px;
+}
+#subcard_Delphi{
+  margin-top: 15px;
+}
+
+#subcard_Delphi:hover{ 
+  transform: scale(1.05);
+ /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5); 
+  transition: all linear 0.25s;
+  bottom: 5px;
+}
+
+#subcard_DBCheck{
+  margin-top: 15px;
+}
+
+#subcard_DBCheck:hover{ 
+  transform: scale(1.05);
+ /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5); 
+  transition: all linear 0.25s;
+  bottom: 5px;
+}
+#subcard_APTCheck{
+  margin-top: 15px;
+}
+
+#subcard_APTCheck:hover{ 
+  transform: scale(1.05);
+ /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5); 
+  transition: all linear 0.25s;
+  bottom: 5px;
+}
+#subcard_IDFCPeak{
+  margin-top: 15px;
+}
+
+#subcard_IDFCPeak:hover{ 
+  transform: scale(1.05);
+ /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5); 
+  transition: all linear 0.25s;
+  bottom: 5px;
+}
+#subcard_call{
+  margin-top: 15px;
+}
+
+#subcard_call:hover{ 
+  transform: scale(1.05);
+ /* box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06); */
+  box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5); 
+  transition: all linear 0.25s;
+  bottom: 5px;
+}
+
+.my-custom-row{
+  background-color: #F5F7FA;
+  height: 320px;
+  /*box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1); */
+}
+.my-custom-row-issue{
+  background-color: #F5F7FA;
+  height: 150px;
+}
+
+.cell-bg1{
+  height: 30px;
+  align-items: center;
+}
+.cell-bg2{
+  /* background-color: cadetblue ; */
+  height: 30px;
+  align-items: center;
+}
+.cell-head-bg2{
+  background-color: cadetblue ;
+  height: 40px;
+  align-items: center;
+}
+.cell-bg3{
+  background-color:gainsboro;
+  height: 30px;
+  align-items: center;
+}
+
+.profile-card-2 {
+  max-width: 200px;
+  max-height: 220px;
+  background-color: #FFF;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+  background-position: center;
+  overflow: hidden;
+  position: relative;
+  margin: 10px auto;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.profile-card-2 img {
+  transition: all linear 0.25s;
+}
+
+.profile-card-2 .profile-name {
+  position: absolute;
+  left: 30px;
+  bottom: 70px;
+  font-size: 30px;
+  color: #FFF;
+  text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  transition: all linear 0.25s;
+}
+
+.profile-card-2 .profile-icons {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  color: #FFF;
+  transition: all linear 0.25s;
+}
+
+.profile-card-2 .profile-username {
+  position: absolute;
+  bottom: 50px;
+  left: 30px;
+  color: #FFF;
+  font-size: 13px;
+  transition: all linear 0.25s;
+}
+
+.profile-card-2 .profile-icons .fa {
+  margin: 5px;
+}
+
+.profile-card-2:hover img {
+  filter: grayscale(100%);
+}
+
+.profile-card-2:hover .profile-name {
+  bottom: 80px;
+}
+
+.profile-card-2:hover .profile-username {
+  bottom: 60px;
+}
+
+.profile-card-2:hover .profile-icons {
+  right: 40px;
+}
+
+#myFooter {
+  overflow: hidden;
+}
+
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+
+</style>
+<head>
+    <!--1. JS FORCE FILE optional --> 
+    <script src="jsforce.js"></script>
+    <!--2. JQUERY FILE-->
+    <script src="jquery.min.js"></script>
+    <!--3. popup JAVASCRIPT FILE-->
+    <script src="popup.js"></script>
+    <!--4. BOOTSTRAP.min JS FILE-->
+    <script src="bootstrap-5.1.3-dist\js\bootstrap.min.js"></script>
+    <!--5. bootstrap.min CSS File-->
+    <link rel="stylesheet" type="text/css" href="bootstrap-5.1.3-dist\css\bootstrap.min.css">
+    <!--6. SLDS lib File-->
+    <link rel="stylesheet" type="text/css" href="salesforce-lightning-design-system.min.css"> 
+    <!--7. SLDS css File-->
+    <link rel="stylesheet" type="text/css" href="slds/assets/styles/salesforce-lightning-design-system.css">
+    <!--8. Miscelaneous Icon and font packs-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&amp;display=swap" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    
+
+	<fieldset class="slds-box" id="formHeader">
+		<div class="header">
+			<h1>ORG HEALTH CHECK</h1>
+		</div>
+	</fieldset>	
+</head>
+
+<body class="body">
+
+  <div id="inputOrgIdInstanceValidation" style="display: none;width:88%;float:center;text-align:center;margin-left:45px">   
+    <div class="slds-badge slds-theme_error" style="width:relative; float:center; text-align:center; font-weight:bold; padding:3px;margin-right:20px; margin-top:3px; border-radius:15px; font-size:12px;font-style:normal;color:#ffffff;box-sizing:border-box;border: 1px solid #b70018;filter:drop-shadow(0px 0px 5px rgba(246, 136, 136, 0.678))" id="orgIdInstanceValidator"></div> 
+  </div>  
+  <div id="orgInstanceInput">
+    <label for="orgIdInput" style="color:#308ABE;margin-left:40px;padding:15px 12px"><b>Organization ID : </b></label>
+    <input type="text" id="orgIdInput" name="orgIdInput" style="border-radius:5px;border:1.5px solid #308ABE;margin:5px;padding:3px">
+    <label for="instanceInput" style="color:#308ABE;margin-left:20px;padding:15px 12px"><b>Instance : </b></label>
+    <input type="text" id="instanceInput" name="instanceInput" style="border-radius:5px;border:1.5px solid #308ABE;margin:5px;padding:3px">
+  </div>
+	<fieldset class="slds-box" id="displayTime">
+    <ul class="ul">
+    <label for="displayTime" style="color:#308ABE;margin-left:-35px"><b>Time Picker :</b></label>
+    <li><button class="circleButton" id="circleButton30" value="30">30 mins</button></li>
+    <li><button class="circleButton" id="circleButton1" value="1">1 hour</button></li>
+    <li><button class="circleButton" id="circleButton2" value="2">2 hours</button></li>
+    <li><button class="circleButton" id="circleButton6" value="6">6 hours</button></li>
+    <li><button class="circleButton" id="circleButton24" value="24">24 hours</button></li>
+    </ul>
+	</fieldset>
+
+  <div id="loader" class="loader"><br></div>
+
+
+  <div class="container-fluid shadow min-vh-10 min-vw-700 py-2" id="dashboardsTable">
+    <div class="container-fluid network_wrapper col-sm p-2">
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-pills card-header-tabs" data-bs-tabs="tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="true" data-bs-toggle="pill" href="#issue">Tier Related Issues</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link " data-bs-toggle="pill" href="#all_dashboards">All Dashboards</a>
+                  </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-bs-toggle="pill" href="#tools">Tools</a>
+                  </li>
+               <!--   <li class="nav-item">
+                      <a class="nav-link" data-bs-toggle="pill" href="#idfc">IDFC</a>
+                  </li> -->
+                </ul>
+            </div>
+
+
+        <form class="card-body tab-content">
+                      <!-- Tab 1-->
+                      <div class="tab-pane active" id="issue">
+                        <div class="row my-custom-row-issue align-items-center justify-content-center ">
+                          <div class="col-sm-4" id="tab2_MQ" >
+                                <div class="media d-flex">
+                                  <div class="align-self-center" title="Message Queue related issues - Grafana &amp; Splunk ">
+                                    <img class="button img_issue" src="assets\Hexagon\MQ_1000px.png" style="height: 60px; width: 60px;">
+                                  </div>
+                                </div>
+                              </div>
+                          <div class="col-sm-4" id="tab2_DB">
+                            <div class="media d-flex">
+                              <div class="align-self-center" title="Database related issues - Cursor DB, CASP(Core App Server Performance) &amp; Splunk " >
+                                <img class="img img_issue" src="assets\Hexagon\DB_1000px.png" style="height: 60px; width: 60px;">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-4" id="tab2_App">
+                            <div class="media d-flex">
+                              <div class="align-self-center" title="App server related issues - SOLR search, CASP(Core App Server Performance) &amp; Splunk(connection Pool) ">
+                                <img class="img img_issue" src="assets\Hexagon\App_1000px.png" style="height: 60px; width: 60px;">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-4" id="tab2_CaaS">
+                            <div class="media d-flex">
+                              <div class="align-self-center" title="Cache related issues - CAAS(Cache as a Service) vitals &amp; podwise health)">
+                                <img class="img img_issue" src="assets\Hexagon\CaaS_1000px.png" style="height: 60px; width: 60px;">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-4" id="tab2_SOLR">
+                            <div class="media d-flex">
+                              <div class="align-self-center" title="SOLR search indexing issue - Grafana(Search service health dashboard)">
+                                <img class="img img_issue" src="assets\Hexagon\SOLR_1000px.png" style="height: 60px; width: 60px;">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-4" id="tab2_PA">
+                            <div class="media d-flex">
+                              <div class="align-self-center" title="Issues related to Gadget downtime" >
+                                <img class="img img_issue" src="assets\Hexagon\PA_1000px.png" style="height: 60px; width: 60px;">
+                              </div>
+                            </div>
+                          </div>
+  
+                        
+                      </div>
+              </div>
+              <!-- END TAB 1-->
+
+              <!--Tab 2 Start-->
+            <div class="tab-pane" id="all_dashboards">
+              <div class="row my-custom-row align-items-top justify-content-round ">
+                      <!-- 1st Card Start  -->      
+                          <div class="col-sm-4">
+                            <div class="card" style="width: 210px;" id="subcard">
+                              <div class="card-header cell-head-bg2 justify-content-round ">
+                                <img class="img mx-2" src="assets\grafana_png.png" style="height: 25px; width: 25px;"> Grafana Dashboard</div>
+                              
+
+                              <div class="card-body">
+                              <ul class="list-group">
+                                    <li class="list-group-item">
+                                      <a id="mqFalconNonFalconDashboard" href="#" align="center" target="_blank">MQ Dashboard</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                      <a id="cacheHealth" href="#" align="center" target="_blank">CaaS Health Dashboard</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                      <a id="cacheHealthPodwiseHealth" href="#" align="center" target="_blank">CaaS Podwise Health</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                      <a id="cursorSOQLDb" href="#" align="center" target="_blank">Cursor (SOQL Query-DB)</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                      <a id="searchServiceHealth" href="#" align="center" target="_blank">SOLR Search Health</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                      <a id="dbOracleHealth" href="#" class="slds-hidden" align="center" target="_blank">DB Oracle Health</a>
+                                    </li>
+                            </ul>
+                              </div>
+                            </div>          
+                          </div>
+                          <!-- END  -->
+
+                <!-- 2nd Card Start --> 
+                          <div class="col-sm-4" >
+                        <!-- Splunk dashboard card -->
+                          <div class="card" style="width: 210px;" id="subcard">
+                              
+                              <div class="card-header cell-head-bg2 justify-content-center ">
+                                <img class="img mx-2" src="assets\splunk_green_png.png" style="height: 20px; width: 20px;"> Splunk Dashboard </div> 
+                      
+                              <div class="card-body">   
+                                <ul class="list-group">
+                                  <li class="list-group-item">
+                                    <a id="cattOverView" href="#" align="center" target="_blank">CATT Overview</a>
+                                  </li>
+                                  <li class="list-group-item">
+                                    <a id="mqUsage" href="#" align="center" target="_blank">MQ Usage</a>
+                                  </li>
+                                  <li class="list-group-item">
+                                    <a id="solrSearchIndexing" href="#" align="center" target="_blank">SOLR Search Indexing</a>
+                                  </li>
+                                  <li class="list-group-item">
+                                    <a id="connpool" href="#" align="center" target="_blank">Connection Pool</a>
+                                  </li>
+                                  <li class="list-group-item">
+                                    <a id="conApex" href="#" align="center" target="_blank">Concurrent Errors</a>
+                                  </li>
+                                 <!-- <li class="list-group-item">
+                                    <a id="ApiPerf" href="#" align="center" target="_blank">API Performance</a>
+                                  </li> -->
+                                  <li class="list-group-item">
+                                    <a id="BulkApi" href="#" align="center" target="_blank">Bulk API Batch Limit</a>
+                                  </li>
+                              </ul>
+                              </div>
+                            </div>     
+                        </div>
+                  <!-- END  -->
+
+                        <!-- 3nd Card Start -->
+                            <div class="col-sm-4">
+                              <div class="card" style="width: 180x;" id="subcard">
+                                <div class="card-header"> <img class="img mx-2" src="assets\argus_png.png" style="height: 25px; width: 25px;"> Argus Dashboard</div>
+                                <div class="card-body">
+                                  <ul class="list-group">
+                                    <li class="list-group-item">
+                                      <a id="falconNonFalconDashboard" href="#" align="center" target="_blank">Primary Dashboard</a>
+                                    </li>
+                                </ul>
+                                </div>
+                                
+                            </div>
+                        </div> 
+                  <!-- END -->
+                </div>
+                  <!-- END -->
+            </div>
+            <!-- Tab 3 -->
+          <div class="tab-pane" id="tools">
+            <div class="row my-custom-row-tools align-items-top justify-content-round ">
+              <!-- Fawkes -->
+          <div class="col-sm-4">
+            <div class="card" style="width: 180px;" id="subcard_OA" title="Fawkes - Gives us an overview of org health and shows all the DB/App/SOLR/MQ level issues at a glance">
+              <div class="card-header cell-head-bg2 justify-content-round ">
+                <img class="img mx-2" src="assets\tools\Fawkes.png" style="height: 25px; width: 25px;"> Org Overview
+              </div>
+            </div>
+          </div>
+          
+            <!-- Pod Tap-->
+              <div class="col-sm-4">
+                <div class="card" style="width: 180px;" id="subcard_OrgAnalyzer" title="To identify the hotspots and Customer Usage Patterns in the Org including throttles ">
+                  <div class="card-header cell-head-bg2 justify-content-round ">
+                    <img class="img mx-2" src="assets\Tools\Org_analyzer.png" style="height: 25px; width: 25px;"> Org Analyzer
+                  </div>
+                </div>
+              </div>
+              
+           <!-- EWS System -->
+           <div class="col-sm-4">
+            <div class="card" style="width: 180px;" id="subcard_EWS" title="Early Warning System - Application that observes ongoing DB issues/Concurrent Apex/Connection pool issues at instance level and create GUS inv">
+              <div class="card-header cell-head-bg2 justify-content-round ">
+                <img class="img mx-2" src="assets\tools\heimdall-icon.png" style="height: 25px; width: 25px;"> EWS Dashboard
+              </div>
+            </div>
+          </div>
+
+          <!-- PagerDuty System -->
+          <div class="col-sm-4">
+            <div class="card" style="width: 180px;" id="subcard_PagerDuty" title="Tool to engage the appropriate stakeholders in emergency scenarios such as approval of emergency LAP.">
+              <div class="card-header cell-head-bg2 justify-content-round ">
+                <img class="img mx-2" src="assets\tools\PagerDuty.png" style="height: 25px; width: 25px;"> PagerDuty
+              </div>
+            </div>
+          </div>
+
+          <!-- ReFocus Dashboard -->
+          <div class="col-sm-4">
+            <div class="card" style="width: 180px;" id="subcard_ReFocus" title="Portal to help us track any ongoing incident and has all the information related to the incident logged by an IC (Incident Commander)">
+              <div class="card-header cell-head-bg2 justify-content-round ">
+                <img class="img mx-2" src="assets\tools\Re.png" style="height: 25px; width: 25px;"> ReFocus
+              </div>
+            </div>
+          </div>
+           
+          <!-- Delphi Dashboard -->
+          <div class="col-sm-4">
+            <div class="card" style="width: 180px;" id="subcard_Delphi" title="Tool to help us analyze further on the gack errors. We can find the gack ids using gslog in splunk.">
+              <div class="card-header cell-head-bg2 justify-content-round ">
+                <img class="img mx-2" src="assets\tools\Delphi_1000px.png" style="height: 25px; width: 25px;"> Delphi
+              </div>
+            </div>
+          </div>
+          </div>
+       </div>
+            <!-- Tab 4 -->
+          <div class="tab-pane" id="idfc">
+            <div class="row my-custom-row-tools align-items-top justify-content-evenly ">
+            <!-- Instance DB CPU check -->
+                <div class="col-sm-6">
+                  <div class="card" style="width: 240px;" id="subcard_DBCheck">
+                    <div class="card-header cell-head-bg2 justify-content-round ">
+                      <img class="img mx-2" src="assets\argus_png.png" style="height: 25px; width: 25px;"> Instance DB CPU check
+                    </div>
+                  </div>
+                </div>
+            
+            <!-- Falcon APT Values check instance wise-->
+              <div class="col-sm-6">
+                <div class="card" style="width: 240px;" id="subcard_APTCheck">
+                  <div class="card-header cell-head-bg2 justify-content-round ">
+                    <img class="img mx-2" src="assets\argus_png.png" style="height: 25px; width: 25px;"> Falcon APT check
+                  </div>
+                </div>
+              </div>
+
+            <!-- IDFC Peak Days Dashboard  -->
+          <div class="col-sm-6">
+            <div class="card" style="width: 240px;" id="subcard_IDFCPeak">
+              <div class="card-header cell-head-bg2 justify-content-round ">
+                <img class="img mx-2" src="assets\splunk_green_png.png" style="height: 25px; width: 25px;"> IDFC Peak Days Dashboard
+              </div>
+            </div>
+          </div>
+
+            <!-- Daily Status call  -->
+          <div class="col-sm-6">
+            <div class="card" style="width: 240px;" id="subcard_call">
+              <div class="card-header cell-head-bg2 justify-content-round ">
+                <img class="img mx-2" src="assets\call.png" style="height: 25px; width: 25px;"> Daily Status Call
+              </div>
+            </div>
+          </div>
+
+          </div>
+       </div>
+
+        </form>
+        </div>
+    </div>
+</div>
+  
+	<fieldset class="slds-box" id="errorArea" style="display: none">
+		<div class="slds-size_2-of-2">
+			<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+				<span class="slds-assistive-text">error</span>
+				<h2 id="errorHeader"></h2>            
+			</div>
+		</div>
+	</fieldset>
+	
+</body>	
+
+<div class="card-footer" id = "myFooter">
+  <small>
+      <p class="alignleft text-muted footer">More info on the plugin and tools can be found <a href="https://docs.google.com/presentation/d/1AXxnBBGbsRO7g2Wdh9hSi4JK4tVrAqo_fYwFxCcbVDs/edit#slide=id.g1720ad8fa59_0_0" target="_blank">here</a> </p> 
+
+      <p class="alignright text-muted footer"><a href="https://forms.gle/zF41d2LWLAmVxHXf8" target="_blank">Feedback Form</a> 
+
+  </small>
+</div>
+</html>

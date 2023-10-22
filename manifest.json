@@ -1,0 +1,43 @@
+{
+    "manifest_version": 3,
+  
+    "name": "Org Health Check Plugin",
+    "description": "Hackathon: This extension will fetch the relevant Splunk, Argus and Grafana Dashboards for an Org through a particular case.",
+    "version": "1.0",
+
+    "content_scripts": [
+        {
+          "matches": ["https://orgcs.my.salesforce.com/*"],
+          "js": ["jsforce.js"]
+        }
+      ],
+    
+    "action": {
+     "default_icon": "icon1.png",
+     "default_popup" : "popup.html"   
+    },
+
+    "icons": { "16": "icon1.png",
+               "48": "icon1.png",
+               "128": "icon1.png" 
+    },
+
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "cookies",
+        "scripting"
+    ],
+
+    "host_permissions": [   
+        "https://orgcs.my.salesforce.com/",
+        "https://org62.my.salesforce.com/*",
+        "https://org62.lightning.force.com/*",
+        "https://org62.my.salesforce.com/",
+        "https://login.Salesforce.com/*",
+        "https://gadget.prom.sfdc.sh/diagnostics/*",
+        "https://mcsorg.my.salesforce.com/",		
+		    "https://mcsorg.lightning.force.com/"
+      ]
+    
+  }
